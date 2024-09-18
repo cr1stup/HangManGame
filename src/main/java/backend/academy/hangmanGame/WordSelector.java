@@ -45,7 +45,7 @@ public class WordSelector {
 
     public String getRandomWord(int category) {
         Word[] words = mapOfWords.get(categories[category]);
-        int randomWord = random().nextInt(words.length);
+        int randomWord = random.nextInt(words.length);
         hint = words[randomWord].hint();
         return words[randomWord].word();
     }
