@@ -18,17 +18,23 @@ public class GameState {
     private int errorCount;
     private int numOfGuessedLetters;
     private String[] complexityPattern;
-    private final Set<Character> errorChar = new HashSet<>();
-    private final WordSelector wordSelector = new WordSelector();
-    private final ComplexitySelector complexitySelector = new ComplexitySelector();
+    private final Set<Character> errorChar;
+    private final WordSelector wordSelector;
+    private final ComplexitySelector complexitySelector;
 
     public GameState() {
+        errorChar = new HashSet<>();
+        wordSelector = new WordSelector();
+        complexitySelector = new ComplexitySelector();
         hangmanPicture = HangmanPicture.ZERO;
         hiddenWord = "";
         hiddenViewWord = "";
         hint = "";
         category = 1;
         complexity = 1;
+        errorCount = 0;
+        maxAttempt = complexitySelector.getMaxError(complexity);
+        complexityPattern = complexitySelector.getComplexityPattern(complexity);
     }
 
     public void checkGuess(char guess) {
