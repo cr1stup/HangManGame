@@ -20,7 +20,7 @@ public class Game {
         while (status == GameStatus.ONGOING) {
             renderer.render(game);
 
-            char guess = input.inputLetter();
+            char guess = input.inputLetter(game);
 
             game.checkGuess(guess);
 
