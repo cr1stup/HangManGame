@@ -15,16 +15,26 @@ public class Game {
     }
 
     public void gameLoop() {
-        GameStatus status = GameStatusChecker.check();
+        game.settingHiddenWord(input.inputCategory());
+        game.settingComplexity(input.inputComplexity());
+
+        GameStatus status = GameStatusChecker.check(game);
+
+        renderer.showCategory(game);
+        renderer.showComplexity(game);
 
         while (status == GameStatus.ONGOING) {
             renderer.render(game);
-
             char guess = input.inputLetter(game);
-
             game.checkGuess(guess);
+            status = GameStatusChecker.check(game);
+        }
 
-            status = GameStatus.ERROR;
+        if (status == GameStatus.ERROR) {
+            renderer.printError();
+        } else {
+            renderer.render(game);
+            renderer.showEndOfGame(status, game);
         }
     }
 }
