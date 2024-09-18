@@ -10,6 +10,10 @@ public class GameRenderer {
     }
 
     public void render(GameState game) {
-        printStream.println("Welcome to Hangman Game");
+        printStream.println(game.hangmanPicture());
+        printStream.println("Hidden word: " + game.hiddenViewWord());
+        printStream.println("Remaining attempts: " + game.getRemainingAttempts());
+        printStream.println("To use hint type: \"hint\"");
+        printStream.println();
     }
 }
