@@ -23,9 +23,27 @@ public class InputProcess {
         errorMessage = "%nInvalid input! Try again";
     }
 
-    public char inputLetter() {
-        printStream.print("Enter your letter: ");
-        return scanner.nextLine().charAt(0);
+    public char inputLetter(GameState game) {
+        while (true) {
+            printStream.print("Enter letter: ");
+            String input = scanner.nextLine().toLowerCase();
+
+            if ("hint".equals(input)) {
+                printStream.println("hint: " + game.hint());
+                printStream.println();
+            } else if (input.isBlank()
+                    || input.matches(digits)
+                    || input.length() > 1
+            ) {
+                printStream.println(errorMessage);
+            } else if (game.hiddenWord().contains((input))
+                || game.errorChar().contains(input.charAt(0))) {
+                printStream.format("You have already input this letter!%n");
+            } else {
+                printStream.println();
+                return input.charAt(0);
+            }
+        }
     }
 
     public int inputCategory() {
@@ -43,7 +61,8 @@ public class InputProcess {
                 return getRandomNum(wordSelector.categories().length);
             } else if (!category.matches(digits)
                 || Integer.parseInt(category) <= 0
-                || Integer.parseInt(category) >= wordSelector.categories().length) {
+                || Integer.parseInt(category) >= wordSelector.categories().length
+            ) {
                 printStream.format(errorMessage);
             } else {
                 printStream.println();
@@ -68,7 +87,8 @@ public class InputProcess {
                 return getRandomNum(complexitySelector.complexities().length);
             } else if (!complexity.matches(digits)
                 || Integer.parseInt(complexity) <= 0
-                || Integer.parseInt(complexity) >= complexitySelector.complexities().length) {
+                || Integer.parseInt(complexity) >= complexitySelector.complexities().length
+            ) {
                 printStream.format(errorMessage);
             } else {
                 printStream.println();
