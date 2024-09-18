@@ -31,4 +31,13 @@ public class GameRenderer {
     public void printError() {
         printStream.format("%nSomething went wrong! Word is not hidden.%n");
     }
+
+    public void showCategory(GameState game) {
+        printStream.println("Your category: " + game.getCategoryName());
+    }
+
+    public void showComplexity(GameState game) {
+        printStream.println("Your complexity: " + game.getComplexityName());
+        printStream.println();
+    }
 }
