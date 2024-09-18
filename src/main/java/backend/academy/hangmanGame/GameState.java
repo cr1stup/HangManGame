@@ -63,4 +63,8 @@ public class GameState {
         maxAttempt = complexitySelector.getMaxError(complexity);
         this.complexity = complexity;
     }
+
+    public int getRemainingAttempts() {
+        return maxAttempt - errorCount;
+    }
 }
