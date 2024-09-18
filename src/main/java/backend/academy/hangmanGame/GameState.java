@@ -67,4 +67,12 @@ public class GameState {
     public int getRemainingAttempts() {
         return maxAttempt - errorCount;
     }
+
+    public String getCategoryName() {
+        return wordSelector.categories()[category];
+    }
+
+    public String getComplexityName() {
+        return complexitySelector.complexities()[complexity];
+    }
 }
