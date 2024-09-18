@@ -35,8 +35,8 @@ public class InputProcess {
                     || input.matches(digits)
                     || input.length() > 1
             ) {
-                printStream.println(errorMessage);
-            } else if (game.hiddenWord().contains((input))
+                printStream.format(errorMessage);
+            } else if (game.hiddenViewWord().contains((input))
                 || game.errorChar().contains(input.charAt(0))) {
                 printStream.format("You have already input this letter!%n");
             } else {
