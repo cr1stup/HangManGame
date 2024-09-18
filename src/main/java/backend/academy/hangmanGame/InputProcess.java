@@ -20,7 +20,7 @@ public class InputProcess {
         this.printStream = printStream;
         random = new SecureRandom();
         digits = "-?\\d+(\\.\\d+)?";
-        errorMessage = "%nInvalid input! Try again";
+        errorMessage = "%nInvalid input! Try again%n";
     }
 
     public char inputLetter(GameState game) {
