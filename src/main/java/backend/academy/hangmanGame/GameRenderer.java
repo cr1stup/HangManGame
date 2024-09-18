@@ -27,4 +27,8 @@ public class GameRenderer {
         }
         printStream.println();
     }
+
+    public void printError() {
+        printStream.format("%nSomething went wrong! Word is not hidden.%n");
+    }
 }
