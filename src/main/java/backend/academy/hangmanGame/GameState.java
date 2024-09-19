@@ -38,6 +38,10 @@ public class GameState {
     }
 
     public void checkGuess(char guess) {
+        if (guess == ' ') {
+            return;
+        }
+
         if (hiddenWord.contains(String.valueOf(guess))) {
             char[] tempView = hiddenViewWord.toCharArray();
 
