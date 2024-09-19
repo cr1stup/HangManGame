@@ -24,26 +24,26 @@ public class InputProcess {
     }
 
     public char inputLetter(GameState game) {
-        while (true) {
-            printStream.print("Enter letter: ");
-            String input = scanner.nextLine().toLowerCase();
+        printStream.print("Enter letter: ");
+        String input = scanner.nextLine().toLowerCase();
 
-            if ("hint".equals(input)) {
-                printStream.println("hint: " + game.hint());
-                printStream.println();
-            } else if (input.isBlank()
-                    || input.matches(digits)
-                    || input.length() > 1
-            ) {
-                printStream.format(errorMessage);
-            } else if (game.hiddenViewWord().contains((input))
-                || game.errorChar().contains(input.charAt(0))) {
-                printStream.format("You have already input this letter!%n");
-            } else {
-                printStream.println();
-                return input.charAt(0);
-            }
+        if ("hint".equals(input)) {
+            printStream.format("%nhint: " + game.hint());
+            printStream.println();
+        } else if (input.isBlank()
+            || input.matches(digits)
+            || input.length() > 1
+        ) {
+            printStream.format(errorMessage);
+        } else if (game.hiddenViewWord().contains((input))
+            || game.errorChar().contains(input.charAt(0))) {
+            printStream.format("%nYou have already input this letter!%n");
+        } else {
+            printStream.println();
+            return input.charAt(0);
         }
+
+        return ' ';
     }
 
     public int inputCategory() {
@@ -97,7 +97,7 @@ public class InputProcess {
         }
     }
 
-    public int getRandomNum(int max) {
+    private int getRandomNum(int max) {
         return random.nextInt(max - 1) + 1;
     }
 }
