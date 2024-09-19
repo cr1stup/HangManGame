@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GameStatusChecker {
     public static GameStatus check(GameState game) {
-        if (game.hiddenWord() == null || game.hiddenWord().isBlank()) {
+        if (game.hiddenWord() == null || game.hiddenWord().isBlank() || game.hiddenWord().contains(" ")) {
             return GameStatus.ERROR;
         } else if (game.getRemainingAttempts() == 0) {
             return GameStatus.LOSS;
