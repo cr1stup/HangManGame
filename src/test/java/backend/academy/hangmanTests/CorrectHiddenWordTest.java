@@ -1,5 +1,6 @@
 package backend.academy.hangmanTests;
 
+import backend.academy.hangmanGame.Categories;
 import backend.academy.hangmanGame.WordSelector;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ public class CorrectHiddenWordTest {
     public void setUp() {
         WordSelector wordSelector = new WordSelector();
         SecureRandom random = new SecureRandom();
-        int randomCategory = random.nextInt(wordSelector.categories().length - 1) + 1;
+        int randomCategory = random.nextInt(Categories.values().length);
         hiddenWord = wordSelector.getRandomWord(randomCategory);
     }
 

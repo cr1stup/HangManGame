@@ -47,10 +47,10 @@ public class InputProcess {
     }
 
     public int inputCategory() {
-        WordSelector wordSelector = new WordSelector();
         while (true) {
-            for (int i = 1; i < wordSelector.categories().length; i++) {
-                printStream.println(i + ". " + wordSelector.categories()[i]);
+            for (Categories category : Categories.values()) {
+                String name = category.name().charAt(0) + category.name().substring(1).toLowerCase();
+                printStream.println(category.ordinal() + 1 + ". " + name);
             }
 
             printStream.format("%nEnter category: ");
@@ -58,15 +58,15 @@ public class InputProcess {
 
             if (category.isBlank()) {
                 printStream.println();
-                return getRandomNum(wordSelector.categories().length);
+                return random.nextInt(Categories.values().length);
             } else if (!category.matches(digits)
                 || Integer.parseInt(category) <= 0
-                || Integer.parseInt(category) >= wordSelector.categories().length
+                || Integer.parseInt(category) > Categories.values().length
             ) {
                 printStream.format(errorMessage);
             } else {
                 printStream.println();
-                return Integer.parseInt(category);
+                return Integer.parseInt(category) - 1;
             }
         }
     }

@@ -79,7 +79,8 @@ public class GameState {
     }
 
     public String getCategoryName() {
-        return wordSelector.categories()[category];
+        String name = Categories.values()[category].name();
+        return name.charAt(0) + name.substring(1).toLowerCase();
     }
 
     public String getComplexityName() {
