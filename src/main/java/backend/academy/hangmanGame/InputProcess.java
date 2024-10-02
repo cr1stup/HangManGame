@@ -74,9 +74,10 @@ public class InputProcess {
     public int inputComplexity() {
         ComplexitySelector complexitySelector = new ComplexitySelector();
         while (true) {
-            for (int i = 1; i < complexitySelector.complexities().length; i++) {
-                printStream.format("%d. %s (%d attempts)%n",
-                    i, complexitySelector.complexities()[i], complexitySelector.getMaxError(i));
+            for (Complexities complexity : Complexities.values()) {
+                String name = complexity.name().charAt(0) + complexity.name().substring(1).toLowerCase();
+                int i = complexity.ordinal();
+                printStream.format("%d. %s (%d attempts)%n", i + 1, name, complexitySelector.getMaxError(i));
             }
 
             printStream.format("%nEnter complexity: ");
@@ -84,20 +85,16 @@ public class InputProcess {
 
             if (complexity.isBlank()) {
                 printStream.println();
-                return getRandomNum(complexitySelector.complexities().length);
+                return random.nextInt(Complexities.values().length);
             } else if (!complexity.matches(digits)
                 || Integer.parseInt(complexity) <= 0
-                || Integer.parseInt(complexity) >= complexitySelector.complexities().length
+                || Integer.parseInt(complexity) > Complexities.values().length
             ) {
                 printStream.format(errorMessage);
             } else {
                 printStream.println();
-                return Integer.parseInt(complexity);
+                return Integer.parseInt(complexity) - 1;
             }
         }
-    }
-
-    private int getRandomNum(int max) {
-        return random.nextInt(max - 1) + 1;
     }
 }

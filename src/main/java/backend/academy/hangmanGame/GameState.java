@@ -84,6 +84,7 @@ public class GameState {
     }
 
     public String getComplexityName() {
-        return complexitySelector.complexities()[complexity];
+        String name = Complexities.values()[complexity].name();
+        return name.charAt(0) + name.substring(1).toLowerCase();
     }
 }
