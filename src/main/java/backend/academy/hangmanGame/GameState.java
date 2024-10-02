@@ -30,8 +30,8 @@ public class GameState {
         hiddenWord = "";
         hiddenViewWord = "";
         hint = "";
-        category = 1;
-        complexity = 1;
+        category = 0;
+        complexity = 0;
         errorCount = 0;
         maxAttempt = complexitySelector.getMaxError(complexity);
         complexityPattern = complexitySelector.getComplexityPattern(complexity);
